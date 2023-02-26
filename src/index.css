@@ -13,3 +13,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+:root {
+  --font-family: 'Manrope', sans-serif;
+
+  --color-text: #73737a;
+  --color-active: #ff521b;
+}
