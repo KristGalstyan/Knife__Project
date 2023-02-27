@@ -59,6 +59,7 @@
 .app__input {
   display: flex;
   justify-content: center;
+  cursor: pointer;
 }
 
 .app__categories {
