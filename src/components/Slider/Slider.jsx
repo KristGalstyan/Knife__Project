@@ -1,78 +1,68 @@
 import React, { useState } from 'react';
 import './Slider.css';
-import { GiShoppingCart } from 'react-icons/gi';
-import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
-import { Slideroverlay, Slideroverback, image, data } from './importImg';
-import SliderRight from './SliderRight';
+import Slideoverlay from './Slideover';
+import Slideback from './Slideback';
 
-function Slider() {
-  const [state, setState] = useState(data);
+function ImageSlider(params) {
+  const [imageItem, setimageItem] = useState([
+    {
+      img: 'https://via.placeholder.com/800x400?text=Slide+1',
+      active: true,
+      id: 0,
+    },
+    {
+      img: 'https://via.placeholder.com/800x400?text=Slide+2',
+      active: false,
+      id: 1,
+    },
+    {
+      img: 'https://via.placeholder.com/800x400?text=Slide+3',
+      active: false,
+      id: 3,
+    },
+    {
+      img: 'https://via.placeholder.com/800x400?text=Slide+2',
+      active: false,
+      id: 4,
+    },
+  ]);
+
+  const NextSlide = ({ elm }) => {
+    console.log(elm);
+  };
+
+  const prevSlide = () => {};
 
   return (
     <div className="container">
-      <div className="app__slider">
-        <div className="app__slider-blockOne">
-          <h3 className="app__slider-blockOne-title">New Colection</h3>
-          <div className="app__slider-blockOne-year">
-            <p>2023</p>
-          </div>
-          <p className="app__slider-blockOne-p">
-            app__slider-blockOne Nunc erat mauris, hendrerit pharetra eget
-            volutpat lorem varius. Lorem urna amet natoque nunc. Hendrerit
-            viverra eu urna sapien accumsan at ornare. Nunc erat mauris,
-            hendrerit pharetra eget volutpat lorem varius. Lorem urna amet
-            natoque nunc. Hendrerit viverra eu urna sapien accumsan at ornare.
-          </p>
-          <div className="app__slider-block">
-            <button type="submit" className="app__slider-block_btn">
-              Shop Now
-              <GiShoppingCart className="app__slider-block-icon" />
-            </button>
-          </div>
-
-          <div className="app__main-slider">
-            <div className="app__main-slider-overback">
-              <Slideroverlay state={state} />;
-            </div>
-            <div className="app__main-slider-overlay">
-              <Slideroverback />;
-            </div>
-
-            <div className="app__main-item">
-              <img src={image} alt="knife" />
-
-              <div className="app__main-itemBLock">
-                <div className="app__main-item-brand">brand name</div>
-
-                <div className="app__main-item-productTitle">
-                  Here will be product title ,<br /> it can be 2 line.
-                </div>
-
-                <div className="app__main-item-available">
-                  <p>Available</p>
-                </div>
-                <strong className="app__main-item-price">200$</strong>
-              </div>
-              <div className="app__slider-item-btn">
-                <button type="submit" className="app__slider-item-basket">
-                  <GiShoppingCart className="app__slider-block-icon" />
-                </button>
-              </div>
-            </div>
-          </div>
+      <div className="slider__info">
+        <h1 className="slider__info-title">New Collection</h1>
+        <div className="slider__info-year">2023</div>
+        <p className="slider__info-p">
+          Nunc erat mauris, hendrerit pharetra eget volutpat lorem varius. Lorem
+          urna amet natoque nunc. Hendrerit viverra eu urna sapien accumsan at
+          ornare. Nunc erat mauris, hendrerit pharetra eget volutpat lorem
+          varius. Lorem urna amet natoque nunc. Hendrerit viverra eu urna sapien
+        </p>
+      </div>
+      <div className="slider">
+        <div className="slider__mini">
+          {imageItem.map((elm, i) => {
+            return true === elm.active ? (
+              <>
+                <NextSlide elm={elm} />
+                <Slideback elm={elm} index={i} />
+              </>
+            ) : (
+              <Slideoverlay key={`elm${i}`} data={elm} />
+            );
+          })}
+          <button onClick={prevSlide}> prev</button>
         </div>
       </div>
-      <div className="app__slider-Blocktwo">
-        <span className="next__slide">
-          <GrFormNext className="next__slide-icon" />
-        </span>
-        <SliderRight />
-        <span className="prev__slide">
-          <GrFormPrevious />
-        </span>
-      </div>
+      <button onClick={NextSlide}> next</button>
     </div>
   );
 }
 
-export default Slider;
+export default ImageSlider;
