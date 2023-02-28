@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Slider.css';
 import Slideoverlay from './Slideover';
-import Slideback from './Slideback';
+import Slidemain from './Slideback';
 
 function ImageSlider(params) {
   const [imageItem, setimageItem] = useState([
@@ -27,8 +27,11 @@ function ImageSlider(params) {
     },
   ]);
 
-  const NextSlide = ({ elm }) => {
-    console.log(elm);
+  const nextSlide = (elm, index) => {
+    console.log(elm, index);
+    const newData = imageItem.map((elm, i) => {
+      return elm.id === index;
+    });
   };
 
   const prevSlide = () => {};
@@ -49,18 +52,13 @@ function ImageSlider(params) {
         <div className="slider__mini">
           {imageItem.map((elm, i) => {
             return true === elm.active ? (
-              <>
-                <NextSlide elm={elm} />
-                <Slideback elm={elm} index={i} />
-              </>
+              <Slidemain elm={elm} index={i} nextSlide={nextSlide} />
             ) : (
               <Slideoverlay key={`elm${i}`} data={elm} />
             );
           })}
-          <button onClick={prevSlide}> prev</button>
         </div>
       </div>
-      <button onClick={NextSlide}> next</button>
     </div>
   );
 }

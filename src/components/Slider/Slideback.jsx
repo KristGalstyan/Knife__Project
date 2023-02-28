@@ -1,12 +1,28 @@
 import React from 'react';
+import './Slidemain.css';
 
-function Slideback({ elm, index }) {
+function Slidemain({ elm, index, nextSlide }) {
   return (
     <div
       key={`elm${index}`}
       className="slider__mini-active"
       style={{ order: '1' }}
     >
+      <span className="btnPrevNext">
+        <button
+          className="btnPrevNext__change"
+          onClick={() => nextSlide(elm, index)}
+        >
+          prev
+        </button>
+        <button
+          className="btnPrevNext__change"
+          onClick={() => nextSlide(elm, index)}
+        >
+          next
+        </button>
+      </span>
+
       <img
         key={`elm${index}`}
         src={elm.img}
@@ -17,7 +33,7 @@ function Slideback({ elm, index }) {
   );
 }
 
-export default Slideback;
+export default Slidemain;
 
 /* =<div
 key={`elm${i}`}

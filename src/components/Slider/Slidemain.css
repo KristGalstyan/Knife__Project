@@ -1,0 +1,31 @@
+.slider__mini-active {
+  display: flex;
+
+  flex-wrap: wrap;
+  flex-wrap: column;
+  justify-content: flex-start;
+  width: 400px;
+  height: 600px;
+  margin-left: 30px;
+  border: 3px solid black;
+}
+
+.btnPrevNext {
+  width: 440px;
+  height: 400px;
+  position: absolute;
+  left: 950px;
+  top: 430px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.btnPrevNext__change {
+  width: 40px;
+  height: 40px;
+  border-radius: 30px;
+  cursor: pointer;
+  border: none;
+}
