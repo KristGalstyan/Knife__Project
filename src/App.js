@@ -1,5 +1,6 @@
 import './App.css';
-import { Nav, Slider } from './components/import';
+import { Nav } from './components/import';
+import Slider from './components/Slider/Slider';
 
 function App() {
   return (
