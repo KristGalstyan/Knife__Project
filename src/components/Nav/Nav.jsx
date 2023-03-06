@@ -3,7 +3,7 @@ import { BsSearch } from 'react-icons/bs';
 import { GiShoppingCart } from 'react-icons/gi';
 import { AiOutlineGlobal } from 'react-icons/ai';
 import { BiMenuAltLeft } from 'react-icons/bi';
-import './nav.css';
+import './Nav.css';
 
 function Nav() {
   return (

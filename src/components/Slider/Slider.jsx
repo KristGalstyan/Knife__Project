@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './slider.css';
+import './Slider.css';
 
 import {
   Slideroverlay,
