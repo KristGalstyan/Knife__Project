@@ -1,12 +1,14 @@
 import './App.css';
-import { Nav } from './components/import';
-import Slider from './components/Slider/Slider';
+import { Nav, Popular, Slider, Advertising, Footer } from './components/import';
 
-function App() {
+function App({ dataPopular }) {
   return (
     <div className="App">
       <Nav />
       <Slider />
+      <Popular dataPopular={dataPopular} />
+      <Advertising />
+      <Footer />
     </div>
   );
 }

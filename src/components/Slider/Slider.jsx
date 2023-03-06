@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import './Slider.css';
-import { GiShoppingCart } from 'react-icons/gi';
-import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
-import Slideroverlay from './Slideroverlay';
-import SliderRight from './SliderRight';
+import './slider.css';
+
+import {
+  Slideroverlay,
+  SliderRight,
+  GrFormNext,
+  GrFormPrevious,
+  GiShoppingCart,
+} from '../import';
 
 function Slider() {
   const [imageItem, setimageItem] = useState([
@@ -40,12 +44,19 @@ function Slider() {
       id: 3,
     },
   ]);
-
-  function dotchange({ elm, i }) {
-    console.log(elm, i);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  function dotchange(i) {
+    setCurrentSlide(i);
+    const newDataSlideWithDots = imageItem[currentSlide];
+    const newDataPartOne = imageItem.slice(0, currentSlide);
+    const newDataPartTwo = imageItem.slice(currentSlide + 1);
+    setimageItem([...newDataPartTwo, ...newDataPartOne, newDataSlideWithDots]);
   }
 
   const nextSlide = () => {
+    setCurrentSlide(
+      currentSlide + 1 >= imageItem.length ? 0 : currentSlide + 1
+    );
     const lastData = imageItem[imageItem.length - 1];
 
     const trueSlide = imageItem.filter((_, i) => {
@@ -58,6 +69,9 @@ function Slider() {
   };
 
   const prevSlide = () => {
+    setCurrentSlide(
+      currentSlide - 1 < 0 ? imageItem.length - 1 : currentSlide - 1
+    );
     const lastData = imageItem[0];
 
     const trueSlide = imageItem.filter((_, i) => {
@@ -101,18 +115,11 @@ function Slider() {
                     <div className="app__main-slider-overback ">
                       <Slideroverlay slideItem={slideItem} />
                     </div>
-                  ) : (
-                    ''
-                  )}
-
-                  {i === 1 ? (
+                  ) : i === 1 ? (
                     <div className="app__main-slider-overlay ">
                       <Slideroverlay slideItem={slideItem} />
                     </div>
-                  ) : (
-                    ''
-                  )}
-                  {i === 2 ? (
+                  ) : i === 2 ? (
                     <div className="app__main-item ">
                       <Slideroverlay slideItem={slideItem} />
                     </div>
@@ -126,16 +133,15 @@ function Slider() {
             })}
           </div>
           <div className="dots">
-            {imageItem.map((elm, i) => {
-              if (i !== 4) {
+            {imageItem.map((_, i) => {
+              if (i !== imageItem.length)
                 return (
                   <div
                     key={i}
-                    onClick={() => dotchange(elm, i)}
-                    className="dots__item"
+                    className={i === currentSlide ? 'active' : 'dots__item'}
+                    onClick={() => dotchange(i)}
                   />
                 );
-              }
             })}
           </div>
         </div>
